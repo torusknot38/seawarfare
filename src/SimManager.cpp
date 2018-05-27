@@ -16,8 +16,9 @@ int comp(Order* a, Order* b) {
 bool SimulationMgr::simInit(string fname) {
 	string s;
 	string opcode;
-	
+
 	ifstream fin;
+	fname = "../orders/" + fname;
 	fin.open(fname.c_str());
 	if (fin.fail()) {
 		cout << "Order file opening failed." << endl;
