@@ -1,0 +1,20 @@
+# Create the objects
+# http://www.navysite.de/nframes.htm
+# http://www.navysite.de/carriers.htm
+# CreateAirCraftCarrier USS_Nimitz CVN-68 85 4 50
+# http://www.navysite.de/cruisers.htm
+CreateCruiser USS_Texas CGN-39 50 50
+
+#
+#  Start the simulation
+#
+StartSim    12/14/2015 10:00:00
+DeployShip  12/14/2015 10:03:00 CGN-39 0 0 90 30
+
+ChangeShipOrders 12/14/2015 10:10:00 CGN-39  225  30
+ChangeShipOrders 12/14/2015 10:25:00 CGN-39    0  25
+ChangeShipOrders 12/14/2015 10:40:00 CGN-39   45  30
+ChangeShipOrders 12/14/2015 10:55:00 CGN-39  180  30
+
+
+StopSim 12/14/2015 11:00:00

@@ -1,0 +1,29 @@
+# Create the objects
+# http://www.navysite.de/nframes.htm
+# 
+# http://www.navysite.de/carriers.htm
+# CreateAirCraftCarrier USS_Nimitz CVN-68 85 4 50
+# http://www.navysite.de/cruisers.htm
+
+
+
+CreateCruiser USS_Virginia CGN-38 50 50
+CreateCruiser USS_Vincennes CG-49 50 50
+CreateAircraftCarrier USS_Nimitz CVN-68 85 50
+
+
+
+
+
+StartSim 12/14/2015 10:00:00
+DeployShip  12/14/2015 10:00:00 CGN-38 0 2 90 25
+DeployShip  12/14/2015 10:00:00 CG-49  0 -2 90 30
+DeployShip  12/14/2015 10:00:00 CVN-68 0 0 90 35
+
+ChangeShipOrders 12/14/2015 10:10:00 CGN-38 0 25
+
+
+ChangeShipOrders 12/14/2015 10:10:00 CG-49 180  -1
+
+
+StopSim 12/14/2015 10:30:00

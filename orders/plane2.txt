@@ -1,0 +1,32 @@
+CreateAircraftCarrier USS_Nimitz CVN-68 85 50
+CreateAircraftCarrier USS_Ronald_Reagan CVN-76 85 50
+CreateFighter F18_Hornet FA18C_1 CVN-68 1190 40000 9
+CreateFighter F18_Hornet FA18C_2 CVN-68 1190 40000 9
+
+#
+#  Start the simulation
+#
+StartSim 12/14/2015 10:00:00
+DeployShip  12/14/2015 10:05:00 CVN-68 0 20 90 35
+DeployShip  12/14/2015 10:05:00 CVN-76 0 -20 90 35
+
+DeployAircraft 12/14/2015 10:10:00 FA18C_1 315 600 35000
+DeployAircraft 12/14/2015 10:15:00 FA18C_2 315 800 35000
+
+LandAircraft  12/14/2015 10:20:00 CVN-76 FA18C_1
+LandAircraft  12/14/2015 10:25:00 CVN-68 FA18C_2
+
+ChangeAircraftOrders 12/14/2015 10:25:00 FA18C_1 -1 500 30000
+ChangeAircraftOrders 12/14/2015 10:27:00 FA18C_1 -1 400 25000
+ChangeAircraftOrders 12/14/2015 10:29:00 FA18C_1 -1 350 10000
+ChangeAircraftOrders 12/14/2015 10:31:00 FA18C_1 -1 300 5000
+ChangeAircraftOrders 12/14/2015 10:35:00 FA18C_1 -1 200 2000
+
+ChangeAircraftOrders 12/14/2015 10:28:00 FA18C_2 -1 500 20000
+ChangeAircraftOrders 12/14/2015 10:35:00 FA18C_2 -1 300 10000
+ChangeAircraftOrders 12/14/2015 10:38:00 FA18C_2 -1 200 5000
+ChangeAircraftOrders 12/14/2015 10:41:00 FA18C_2 -1 200 2000
+
+
+
+StopSim 12/14/2015 10:55:00

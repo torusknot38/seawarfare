@@ -1,0 +1,9 @@
+# plane test 4 (fourth quadrant)
+CreateAircraftCarrier USS_Nimitz CVN-68 85 50
+CreateFighter F18_Hornet FA18C_1 CVN-68 1190 40000 10
+#
+StartSim 12/09/2015 10:00:00
+DeployShip  12/09/2015 10:00:00 CVN-68 0 0 90 30
+DeployAircraft 12/09/2015 10:02:00 FA18C_1 305 300 35000
+LandAircraft 12/09/2015 10:07:00 CVN-68 FA18C_1
+EndSim 12/09/2015 10:20:00

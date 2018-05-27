@@ -1,0 +1,10 @@
+# Create the objects
+CreateCruiser USS_Texas CGN-39 50 50
+CreateAircraftCarrier USS_Nimitz CVN-68 85 50
+
+StartSim 12/14/2015 15:00:00
+DeployShip 12/14/2015 15:02:00 CGN-39 -5 -0 90 25
+DeployShip 12/14/2015 15:02:00 CVN-68 5 0 270 50
+ChangeShipOrders 12/14/2015 15:10:00 CGN-39 180 30
+ChangeShipOrders 12/14/2015 15:10:00 CVN-68 0 30
+StopSim 12/14/2015 15:25:00

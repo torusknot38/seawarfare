@@ -1,0 +1,40 @@
+# A nice starburst effect
+CreateCruiser USS_Friske   CGN-20 50 50
+CreateCruiser USS_Meyer  CGN-21 50 50
+CreateCruiser USS_Schulz   CGN-22 50 50
+CreateCruiser USS_Buelow  CGN-23 50 50
+CreateCruiser USS_Halvorson CGN-24 50 50
+CreateCruiser USS_Moench   CGN-25 50 50
+CreateCruiser USS_Ha   CGN-26 50 50
+CreateCruiser USS_Veach    CGN-27 50 50
+
+
+StartSim 12/14/2015 15:00:00
+DeployShip 12/14/2015 15:00:00 CGN-20 -1  1 315 30
+DeployShip 12/14/2015 15:00:00 CGN-21  0  1   0 30
+DeployShip 12/14/2015 15:00:00 CGN-22  1  1  45 30
+DeployShip 12/14/2015 15:00:00 CGN-23  1  0  90 30
+DeployShip 12/14/2015 15:00:00 CGN-24  1 -1 135 30
+DeployShip 12/14/2015 15:00:00 CGN-25  0 -1 180 30
+DeployShip 12/14/2015 15:00:00 CGN-26 -1 -1 225 30
+DeployShip 12/14/2015 15:00:00 CGN-27 -1  0 270 30
+
+ChangeShipOrders 12/14/2015 15:20:00 CGN-20  45 -1
+ChangeShipOrders 12/14/2015 15:20:00 CGN-21  90 -1
+ChangeShipOrders 12/14/2015 15:20:00 CGN-22 135 -1
+ChangeShipOrders 12/14/2015 15:20:00 CGN-23 180 -1
+ChangeShipOrders 12/14/2015 15:20:00 CGN-24 225 -1
+ChangeShipOrders 12/14/2015 15:20:00 CGN-25 270 -1
+ChangeShipOrders 12/14/2015 15:20:00 CGN-26 315 -1
+ChangeShipOrders 12/14/2015 15:20:00 CGN-27   0 -1
+
+ChangeShipOrders 12/14/2015 15:50:00 CGN-20  90 -1
+ChangeShipOrders 12/14/2015 15:50:00 CGN-21 135 -1
+ChangeShipOrders 12/14/2015 15:50:00 CGN-22 180 -1
+ChangeShipOrders 12/14/2015 15:50:00 CGN-23 225 -1
+ChangeShipOrders 12/14/2015 15:50:00 CGN-24 270 -1
+ChangeShipOrders 12/14/2015 15:50:00 CGN-25 315 -1
+ChangeShipOrders 12/14/2015 15:50:00 CGN-26   0 -1
+ChangeShipOrders 12/14/2015 15:50:00 CGN-27  45 -1
+
+StopSim 12/14/2015 16:30:00
