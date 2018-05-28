@@ -1,6 +1,5 @@
 #include "ATime.h"
 #include "Location.h"
-using namespace std;
 
 Location::Location() {
 	x = 0;
@@ -34,8 +33,8 @@ void Location::getXYZ(double& x_pos, double& y_pos, double& z_pos) const {
 }
 
 void Location::print() {
-	cout.setf(ios::fixed);
-	cout.setf(ios::showpoint);
-	cout.precision(2);
-	cout << "(" << x << ", " << y << ", " << z << ")" << " ATime = " << t << endl;
+	std::cout.setf(std::ios::fixed);
+	std::cout.setf(std::ios::showpoint);
+	std::cout.precision(2);
+	std::cout << "(" << x << ", " << y << ", " << z << ")" << " ATime = " << t << std::endl;
 }

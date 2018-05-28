@@ -1,5 +1,5 @@
 //Troy Moench
-#pragma warning(disable: 4996)
+// #pragma warning(disable: 4996)
 
 #include "ATime.h"
 #include <iostream>
@@ -8,7 +8,6 @@
 #include <sstream>
 #include <iomanip>
 
-using namespace std;
 
 ATime::ATime()
 {
@@ -20,13 +19,13 @@ ATime::ATime(time_t x)
 	m_time = x;
 }
 
-ATime::ATime(string mdy, string hms)
+ATime::ATime(std::string mdy, std::string hms)
 {
 	int mon, day, yr, hr, min, sec;
 	char junk;
-	istringstream is(mdy);
+	std::istringstream is(mdy);
 	is >> mon >> junk >> day >> junk >> yr;
-	istringstream is2(hms);
+	std::istringstream is2(hms);
 	is2 >> hr >> junk >> min >> junk >> sec;
 	struct tm present;
 	present.tm_mon = mon - 1;
@@ -39,11 +38,11 @@ ATime::ATime(string mdy, string hms)
 	m_time = mktime(&present);
 }
 
-string ATime::getSVal() const
+std::string ATime::getSVal() const
 {
 	struct tm now;
 	now = *localtime(&m_time);
-	ostringstream os;
+	std::ostringstream os;
 	int mon = now.tm_mon + 1;
 	int day = now.tm_mday;
 	int yr = now.tm_year + 1900;
@@ -51,12 +50,12 @@ string ATime::getSVal() const
 	int min = now.tm_min;
 	int sec = now.tm_sec;
 	os.fill('0');
-	os << setw(2) << mon << "/"
-		<< setw(2) << day << "/"
+	os << std::setw(2) << mon << "/"
+		<< std::setw(2) << day << "/"
 		<< yr << " "
-		<< setw(2) << hr << ":"
-		<< setw(2) << min << ":"
-		<< setw(2) << sec;
+		<< std::setw(2) << hr << ":"
+		<< std::setw(2) << min << ":"
+		<< std::setw(2) << sec;
 	return os.str();
 }
 
@@ -128,7 +127,7 @@ ATime operator+(int i, const ATime& t)
 	return t + i;
 }
 
-ostream& operator<<(ostream& os, ATime at)
+std::ostream& operator<<(std::ostream& os, ATime at)
 {
 	os << at.getSVal();
 	return os;

@@ -7,42 +7,42 @@
 #include <algorithm>
 typedef std::map<std::string, Movable*>::iterator MapIterator;
 typedef std::deque<Order*>::iterator OrderIterator;
-using namespace std;
 
 int comp(Order* a, Order* b) {
 	return (*a < *b);
 }
 
-bool SimulationMgr::simInit(string fname) {
-	string s;
-	string opcode;
+bool SimulationMgr::simInit(std::string fname) {
+	std::string s;
+	std::string opcode;
 
-	ifstream fin;
+	std::ifstream fin;
 	fname = "../orders/" + fname;
 	fin.open(fname.c_str());
 	if (fin.fail()) {
-		cout << "Order file opening failed." << endl;
+		std::cout << "Order file opening failed." << std::endl;
+		return false;
 	}
 	while (getline(fin, s)) {
 		if (s.length() == 0 || s[0] == '#') continue;
-		istringstream is(s);
+		std::istringstream is(s);
 		is >> opcode;
 		if (opcode == "StartSim") {
-			string mdy, hms;
+			std::string mdy, hms;
 			if (is >> mdy >> hms) {
 				start = ATime(mdy, hms);
 			}
 			else return false;
 		}
 		else if (opcode == "EndSim" || opcode == "StopSim") {
-			string mdy, hms;
+			std::string mdy, hms;
 			if (is >> mdy >> hms) {
 				stop = ATime(mdy, hms);
 			}
 			else return false;
 		}
 		else if (opcode == "CreateCruiser") {
-			string Id, name;
+			std::string Id, name;
 			double MaxSpeed;
 			int nmissiles;
 			if (is >> name >> Id >> nmissiles >> MaxSpeed) {
@@ -52,7 +52,7 @@ bool SimulationMgr::simInit(string fname) {
 			else return false;
 		}
 		else if (opcode == "CreateAircraftCarrier") {
-			string Id, name;
+			std::string Id, name;
 			double MaxSpeed;
 			int MaxAircraft;
 			if (is >> name >> Id >> MaxAircraft >> MaxSpeed) {
@@ -62,7 +62,7 @@ bool SimulationMgr::simInit(string fname) {
 			else return false;
 		}
 		else if (opcode == "CreateFighter") {
-			string Id, name, ShipId;
+			std::string Id, name, ShipId;
 			double MaxSpeed, MaxCeiling;
 			int MaxBombs;
 			if (is >> name >> Id >> ShipId >> MaxSpeed >> MaxCeiling >> MaxBombs) {
@@ -70,7 +70,7 @@ bool SimulationMgr::simInit(string fname) {
 				nmi = nm.find(ShipId);
 				if (nmi == nm.end())
 				{
-					cout << "Error. Could not find Carrier!" << endl;
+					std::cout << "Error. Could not find Carrier!" << std::endl;
 					return false;
 				}
 				Movable* sptr = nmi->second;
@@ -80,7 +80,7 @@ bool SimulationMgr::simInit(string fname) {
 			else return false;
 		}
 		else if (opcode == "DeployShip") {
-			string mdy, hms, Id;
+			std::string mdy, hms, Id;
 			double x, y, head, spd;
 			if (is >> mdy >> hms >> Id >> x >> y >> head >> spd) {
 				ATime atm(mdy, hms);
@@ -89,7 +89,7 @@ bool SimulationMgr::simInit(string fname) {
 			}
 		}
 		else if (opcode == "DeployAircraft") {
-			string mdy, hms, Id;
+			std::string mdy, hms, Id;
 			double z, head, spd;
 			if (is >> mdy >> hms >> Id >> head >> spd >> z) {
 				ATime atm(mdy, hms);
@@ -98,7 +98,7 @@ bool SimulationMgr::simInit(string fname) {
 			}
 		}
 		else if (opcode == "ChangeShipOrders") {
-			string mdy, hms, Id;
+			std::string mdy, hms, Id;
 			double head, spd;
 			if (is >> mdy >> hms >> Id >> head >> spd) {
 				ATime atm(mdy, hms);
@@ -107,7 +107,7 @@ bool SimulationMgr::simInit(string fname) {
 			}
 		}
 		else if (opcode == "ChangeAircraftOrders") {
-			string mdy, hms, Id;
+			std::string mdy, hms, Id;
 			double z, head, spd;
 			if (is >> mdy >> hms >> Id >> head >> spd >> z) {
 				ATime atm(mdy, hms);
@@ -116,13 +116,13 @@ bool SimulationMgr::simInit(string fname) {
 			}
 		}
 		else if (opcode == "LandAircraft") {
-			string mdy, hms, Id, sId;
+			std::string mdy, hms, Id, sId;
 			if (is >> mdy >> hms >> sId >> Id) {
 				MapIterator nmi;
 				ATime atm(mdy, hms);
 				nmi = nm.find(sId);
 				if (nmi == nm.end()) {
-					cout << "Error. Could not find Carrier!" << endl;
+					std::cout << "Error. Could not find Carrier!" << std::endl;
 					return false;
 				}
 				Movable* sptr = nmi->second;

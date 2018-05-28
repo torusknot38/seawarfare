@@ -2,11 +2,10 @@
 #include "ATime.h"
 #include "Movable.h"
 #include "Order.h"
-using namespace std;
 
 Order::Order() {}
 
-Order::Order(ATime a, string s) {
+Order::Order(ATime a, std::string s) {
 	ID = s;
 	extime = a;
 }
@@ -25,7 +24,7 @@ bool Order::operator!=(const Order& o) const {
 }
 
 void Order::print() {
-	cout << ID << " " << extime << endl;
+	std::cout << ID << " " << extime << std::endl;
 }
 
 DeployShip::DeployShip() {
@@ -35,7 +34,7 @@ DeployShip::DeployShip() {
 	speed = -1;
 }
 
-DeployShip::DeployShip(ATime a, string s, double x, double y, double head, double spd) : Order(a, s) {
+DeployShip::DeployShip(ATime a, std::string s, double x, double y, double head, double spd) : Order(a, s) {
 	start_x = x;
 	start_y = y;
 	heading = head;
@@ -52,7 +51,7 @@ DeployAircraft::DeployAircraft() {
 	altitude = -1;
 }
 
-DeployAircraft::DeployAircraft(ATime a, string s, double head, double spd, double alt) : Order(a, s) {
+DeployAircraft::DeployAircraft(ATime a, std::string s, double head, double spd, double alt) : Order(a, s) {
 	heading = head;
 	speed = spd;
 	altitude = alt;
@@ -72,11 +71,11 @@ ChangeShip::ChangeShip() {
 	speed = -1;
 }
 
-ChangeShip::ChangeShip(ATime a, string s, double head, double spd) : Order(a, s) {
+ChangeShip::ChangeShip(ATime a, std::string s, double head, double spd) : Order(a, s) {
 	heading = head;
 	speed = spd;
 }
- 
+
 bool ChangeShip::Execute(Movable* mp, ATime t) {
 	return (mp->change(heading, speed, 0, t));
 }
@@ -87,7 +86,7 @@ ChangeAircraft::ChangeAircraft() {
 	altitude = -1;
 }
 
-ChangeAircraft::ChangeAircraft(ATime a, string s, double head, double spd, double alt) : Order(a, s){
+ChangeAircraft::ChangeAircraft(ATime a, std::string s, double head, double spd, double alt) : Order(a, s){
 	heading = head;
 	speed = spd;
 	altitude = alt;
@@ -101,7 +100,7 @@ LandAircraft::LandAircraft() {
 	shipID = NULL;
 }
 
-LandAircraft::LandAircraft(ATime a, Movable* b, string s) : Order(a, s)  {
+LandAircraft::LandAircraft(ATime a, Movable* b, std::string s) : Order(a, s)  {
 	shipID = b;
 }
 

@@ -6,7 +6,6 @@
 #include "Location.h"
 #include "Movable.h"
 typedef std::list <Location>::iterator ListIterator;
-using namespace std;
 
 Movable::Movable() {
 	isdeployed = false;
@@ -16,7 +15,7 @@ Movable::Movable() {
 	heading = 0;
 }
 
-Movable::Movable(string nm, string s, double mspd) {
+Movable::Movable(std::string nm, std::string s, double mspd) {
 	name = nm;
 	ID = s;
 	isdeployed = false;
@@ -54,7 +53,7 @@ void Movable::update(ATime a) {
 	hl.push_back(loc);
 	at = a;
 	//this->print();
-	//cout << "Position updated at " << at << endl;
+	//std::cout << "Position updated at " << at << std::endl;
 }
 
 Location Movable::getlocation() {
@@ -62,7 +61,7 @@ Location Movable::getlocation() {
 }
 
 void Movable::print() {
-	cout << name << " " << ID << " " << max_speed << endl;
+	std::cout << name << " " << ID << " " << max_speed << std::endl;
 }
 
 void Movable::printHL() {
@@ -78,7 +77,7 @@ HistoryList* Movable::getHistory() {
 
 Ship::Ship() {}
 
-Ship::Ship(string nm, string s, double mspd) : Movable(nm, s, mspd) {}
+Ship::Ship(std::string nm, std::string s, double mspd) : Movable(nm, s, mspd) {}
 
 bool Ship::change(double head, double spd, double alt, ATime t) { //changes ship's course
 	this->updatePosition(t);
@@ -99,7 +98,7 @@ Cruiser::Cruiser() {
 	max_missiles = 0;
 }
 
-Cruiser::Cruiser(string nm, string s, int m, double mspd) : Ship(nm, s, mspd) {
+Cruiser::Cruiser(std::string nm, std::string s, int m, double mspd) : Ship(nm, s, mspd) {
 	max_missiles = m;
 }
 
@@ -107,7 +106,7 @@ Carrier::Carrier(){
 	max_aircraft = 0;
 }
 
-Carrier::Carrier(string nm, string s, int m, double mspd) : Ship(nm, s, mspd) {
+Carrier::Carrier(std::string nm, std::string s, int m, double mspd) : Ship(nm, s, mspd) {
 	max_aircraft = m;
 }
 
@@ -117,7 +116,7 @@ Fighter::Fighter() {
 	max_speed = 0;
 }
 
-Fighter::Fighter(string nm, string s, Movable* id, double mc, double mspd, int mb) : Movable(nm, s, mspd) {
+Fighter::Fighter(std::string nm, std::string s, Movable* id, double mc, double mspd, int mb) : Movable(nm, s, mspd) {
 	max_ceiling = mc;
 	max_speed = mspd;
 	max_bombs = mb;
@@ -167,7 +166,7 @@ void Fighter::updatePosition(ATime a) {
 			if (this->withinrange()) {
 				isdeployed = false;
 				islanding = false;
-				cout << "Landed safely." << endl;
+				std::cout << "Landed safely." << std::endl;
 			}
 			else {
 				this->gotocarrier();
@@ -186,7 +185,7 @@ bool Fighter::withinrange() {
 	dx = sx - fx;
 	dy = sy - fy;
 	distance = sqrt(pow(dx, 2) + pow(dy, 2));
-	cout << "Distance = " << distance << endl;
+	std::cout << "Distance = " << distance << std::endl;
 	if (distance <= speed / 60) {
 		return true;
 	}
@@ -212,7 +211,7 @@ void Fighter::gotocarrier() {
 		}
 	}
 	else {
-		theta = abs(atan(dx / dy)*(180 / PI));
+		theta = std::abs(atan(dx / dy)*(180 / PI));
 		if (dx >= 0 && dy > 0) {
 			heading = theta;
 		}
@@ -226,8 +225,8 @@ void Fighter::gotocarrier() {
 			heading = 360 - theta;
 		}
 		else {
-			cout << "Heading could not be found." << endl;
+			std::cout << "Heading could not be found." << std::endl;
 		}
 	}
-	cout << "Heading = " << heading << endl;
+	std::cout << "Heading = " << heading << std::endl;
 }
