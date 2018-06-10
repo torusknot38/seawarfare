@@ -1,3 +1,5 @@
 bin/debug/**
 bin/release/**
+!bin/debug/.keep
+!bin/release/.keep
 cscope.*
