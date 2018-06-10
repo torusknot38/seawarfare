@@ -17,7 +17,7 @@ bool SimulationMgr::simInit(std::string fname) {
 	std::string opcode;
 
 	std::ifstream fin;
-	fname = "../orders/" + fname;
+	// fname = "../orders/" + fname;
 	fin.open(fname.c_str());
 	if (fin.fail()) {
 		std::cout << "Order file opening failed." << std::endl;

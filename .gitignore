@@ -1,5 +1,3 @@
-Debug/
-*.vcxproj
-*.vcxproj.filters
-*.vcxproj.user
-a.out
+bin/debug/**
+bin/release/**
+cscope.*
