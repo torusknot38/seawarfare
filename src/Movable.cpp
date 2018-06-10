@@ -134,6 +134,7 @@ bool Fighter::deploy(double z, double head, double spd, ATime t) { //deploys air
 	hl.push_back(loc);
 	heading = head;
 	speed = spd;
+	altitude = z;
 	at = t;
 	return true;
 }
@@ -145,6 +146,7 @@ bool Fighter::change(double alt, double head, double spd, ATime t) {
 	}
 	if (alt != -1) {
 		loc.setZ(alt);
+		altitude = alt;
 	}
 	if (!islanding && head != -1) {
 			heading = head;
@@ -162,6 +164,8 @@ bool Fighter::land(Movable* Id, ATime t) {
 void Fighter::updatePosition(ATime a) {
 	if (isdeployed) {
 		this->update(a);
+		loc.setZ(altitude);
+		loc.print();
 		if (islanding) {
 			if (this->withinrange()) {
 				isdeployed = false;
@@ -185,7 +189,7 @@ bool Fighter::withinrange() {
 	dx = sx - fx;
 	dy = sy - fy;
 	distance = sqrt(pow(dx, 2) + pow(dy, 2));
-	std::cout << "Distance = " << distance << std::endl;
+	// std::cout << "Distance = " << distance << std::endl;
 	if (distance <= speed / 60) {
 		return true;
 	}
@@ -193,7 +197,7 @@ bool Fighter::withinrange() {
 }
 
 void Fighter::gotocarrier() {
-	double theta, dx, dy, fx, fy, sx, sy;
+	double theta, dx, dy, fx, fy, sx, sy, distance, da, t;
 	const double PI = 3.141592654;
 	Location ship, fighter;
 	ship = ShipID->getlocation();
@@ -202,6 +206,20 @@ void Fighter::gotocarrier() {
 	fighter.getXY(fx, fy);
 	dx = sx - fx;
 	dy = sy - fy;
+	distance = sqrt(pow(dx, 2) + pow(dy, 2));
+	// decrease altitude proportionally to time to land
+	t = distance*60 / speed;
+	da = altitude / t;
+	altitude -= da;
+
+	if (t < 10) {
+		// decrease speed by 10%
+		// arbitrarily chosen
+		speed *= .90;
+	}
+	// std::cout << "da = " << da << std::endl;
+	std::cout << "speed = " << speed << std::endl;
+
 	if (dy == 0) {
 		if (sx - fx > 0) {
 			heading = 90;
@@ -228,5 +246,6 @@ void Fighter::gotocarrier() {
 			std::cout << "Heading could not be found." << std::endl;
 		}
 	}
-	std::cout << "Heading = " << heading << std::endl;
+	// std::cout << "Heading = " << heading << std::endl;
+	// std::cout << "Altitude = " << altitude << std::endl;
 }
