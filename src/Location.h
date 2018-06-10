@@ -2,6 +2,7 @@
 #define LOCATION_H
 
 class Location {
+	friend double getDistance(const Location&, const Location&);
 public:
 	Location();
 	Location(double, double, ATime);

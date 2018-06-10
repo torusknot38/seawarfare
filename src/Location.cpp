@@ -1,5 +1,17 @@
 #include "ATime.h"
 #include "Location.h"
+#include <cmath>
+
+
+double getDistance(const Location &a, const Location &b) {
+	double sx, sy, fx, fy, dx, dy;
+	a.getXY(sx, sy);
+	b.getXY(fx, fy);
+	dx = sx - fx;
+	dy = sy - fy;
+	return sqrt(pow(dx, 2) + pow(dy, 2));
+}
+
 
 Location::Location() {
 	x = 0;

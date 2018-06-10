@@ -184,11 +184,7 @@ bool Fighter::withinrange() {
 	Location ship, fighter;
 	ship = ShipID->getlocation();
 	fighter = this->getlocation();
-	ship.getXY(sx, sy);
-	fighter.getXY(fx, fy);
-	dx = sx - fx;
-	dy = sy - fy;
-	distance = sqrt(pow(dx, 2) + pow(dy, 2));
+	distance = getDistance(ship, fighter);
 	// std::cout << "Distance = " << distance << std::endl;
 	if (distance <= speed / 60) {
 		return true;
